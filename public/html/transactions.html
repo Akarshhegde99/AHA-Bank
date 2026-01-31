@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - AHA Bank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="bg-mesh min-h-screen pb-20">
+    <nav class="glass sticky top-0 z-50 border-b border-slate-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center gap-4">
+                    <a href="/html/dashboard.html"
+                        class="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                    </a>
+                    <span class="text-2xl font-black text-slate-800 tracking-tight">AHA Bank</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Account Overview Card -->
+        <div id="accountDetails"
+            class="bg-gradient-blue rounded-[2rem] p-8 mb-10 text-white shadow-2xl shadow-blue-200 overflow-hidden relative animate-fade-in">
+            <div class="relative z-10">
+                <div class="flex justify-between items-start mb-10">
+                    <div>
+                        <p id="accType"
+                            class="text-blue-100 text-[10px] font-black uppercase tracking-[0.2em] mb-1 opacity-80"></p>
+                        <h1 id="accNumber" class="text-xl font-bold tracking-tight"></h1>
+                    </div>
+                    <div class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-blue-100 text-xs font-medium mb-1 opacity-80">Available Balance</p>
+                    <p id="accBalance" class="text-5xl font-black tracking-tighter">₹0.00</p>
+                </div>
+            </div>
+            <div class="absolute right-0 bottom-0 -mr-16 -mb-16 opacity-10">
+                <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+                    <path fill-rule="evenodd"
+                        d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </div>
+        </div>
+
+        <div id="transactionForms" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 animate-fade-in">
+            <!-- Deposit -->
+            <div class="card-premium p-6">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4">
+                            </path>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">Deposit</h2>
+                </div>
+                <form id="depositForm" class="space-y-4">
+                    <input type="number" id="depositAmount" step="0.01" min="0.01" required placeholder="0.00"
+                        class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-150 font-bold text-lg">
+                    <input type="text" id="depositDesc" placeholder="Note (Optional)"
+                        class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-150 text-sm">
+                    <button type="submit" class="w-full btn-primary !bg-green-600 hover:!bg-green-700 h-12">Confirm
+                        Deposit</button>
+                </form>
+            </div>
+
+            <!-- Withdraw -->
+            <div class="card-premium p-6">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">Withdraw</h2>
+                </div>
+                <form id="withdrawForm" class="space-y-4">
+                    <input type="number" id="withdrawAmount" step="0.01" min="0.01" required placeholder="0.00"
+                        class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-150 font-bold text-lg">
+                    <input type="text" id="withdrawDesc" placeholder="Note (Optional)"
+                        class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-blue-500 focus:border-blue-500 transition duration-150 text-sm">
+                    <button type="submit" class="w-full btn-primary !bg-red-600 hover:!bg-red-700 h-12">Confirm
+                        Withdrawal</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card-premium overflow-hidden animate-fade-in">
+            <div class="px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+                <h2 class="text-xl font-extrabold text-slate-800 tracking-tight">Statement</h2>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Recent Activity</span>
+            </div>
+            <div class="overflow-x-auto text-slate-800">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50/50 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">
+                        <tr>
+                            <th class="px-8 py-4">Date</th>
+                            <th class="px-8 py-4">Details</th>
+                            <th class="px-8 py-4">Status</th>
+                            <th class="px-8 py-4 text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionHistory" class="divide-y divide-slate-50">
+                        <!-- Transactions loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast"
+        class="fixed bottom-10 left-1/2 transform -translate-x-1/2 px-8 py-4 rounded-2xl text-white font-bold shadow-2xl hidden z-[200] animate-fade-in">
+    </div>
+
+    <script src="/js/transactions.js"></script>
+</body>
+
+</html>
